@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resume-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: resume
+  template:
+    metadata:
+      labels:
+        app: resume
+    spec:
+      containers:
+      - name: resume
+        image: yyz.ocir.io/yzyysouofgct/k8s/resume-website:v4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+        - name: ocirsecret
